@@ -16,6 +16,10 @@ public class TreeSearch {
 		return nodes.getLastKeyLevel();
 	}
 	
+	public List<Node> getFrontier() {
+		return nodes.getLastValues();
+	}
+	
 	public void addNewFrontier() {
 		ArrayList<Node> frontier = (ArrayList<Node>) nodes.getLastValues();
 		int currentLevel = getFrontierLevel();
