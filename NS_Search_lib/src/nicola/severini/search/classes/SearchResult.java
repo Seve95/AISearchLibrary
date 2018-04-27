@@ -1,17 +1,16 @@
 package nicola.severini.search.classes;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import nicola.severini.search.interfaces.IState;
 
 public class SearchResult {
 
-	private IState state;
+	
+	private IState goalState;
 	private MultiHashMap <Integer, Node> path;
 	
-	public SearchResult(IState state, MultiHashMap <Integer, Node> path) {
-		this.state = state;
+	public SearchResult(IState goalState, MultiHashMap <Integer, Node> path) {
+		this.goalState = goalState;
 		this.path = path;
 	}
 	
@@ -24,11 +23,11 @@ public class SearchResult {
 	}
 
 	public IState getState() {
-		return state;
+		return goalState;
 	}
 
-	public void setState(IState state) {
-		this.state = state;
+	public void setState(IState goalState) {
+		this.goalState = goalState;
 	}
 
 	public MultiHashMap <Integer, Node> getPath() {
@@ -37,6 +36,27 @@ public class SearchResult {
 
 	public void setPath(MultiHashMap <Integer, Node> path) {
 		this.path = path;
+	}
+	
+	public String simpleToString() {
+		if (this.goalState == null) {
+			return "Not found";
+		} else return this.goalState.toString(); 
+	}
+	
+	public String completeToString() {
+		String res = "";
+		if (this.goalState == null) {
+			res += "Not found";
+		}
+		else {
+			res += "State: " + goalState.toString() + "\n\n";
+			res += "Path: \n";
+			for (int i = 0; i<path.size(); i++) {
+				res += path.getKeys().get(i) + " " + path.getValues().get(i) +"\n";
+			}
+		}
+		return res;
 	}
 	
 }

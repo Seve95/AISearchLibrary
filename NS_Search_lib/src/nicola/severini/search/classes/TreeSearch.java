@@ -24,9 +24,11 @@ public class TreeSearch {
 		ArrayList<Node> frontier = (ArrayList<Node>) nodes.getLastValues();
 		int currentLevel = getFrontierLevel();
 		for (int i = 0; i<frontier.size(); i++) {
-			nodes.put(currentLevel+1, frontier.get(i));
+			for (int j = 0; j<frontier.get(i).getSons().size(); j++) {
+				nodes.put(currentLevel+1, frontier.get(i).getSons().get(j));
+			}
+			
 		}
 	}
-	
 
 }

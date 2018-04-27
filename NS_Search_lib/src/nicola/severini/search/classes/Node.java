@@ -10,6 +10,11 @@ public class Node {
 	private Node father;
 	private IState state;
 	
+	public Node(IState state) {
+		this.father = null;
+		this.state = state;
+	}
+	
 	public Node(Node father, IState state) {
 		this.father = father;
 		this.state = state;
@@ -26,7 +31,6 @@ public class Node {
 	
 	public List<Node> getSons() {
 		List<Node> res = new ArrayList<Node>();
-		
 		for(int i = 0; i< state.getSuccessors().size(); i++) {
 			res.add(new Node(this, state.getSuccessors().get(i)));
 		}
@@ -34,6 +38,7 @@ public class Node {
 		return res;
 	}
 	
-	
-	
+	public String toString() {
+		return state.toString();
+	}
 }

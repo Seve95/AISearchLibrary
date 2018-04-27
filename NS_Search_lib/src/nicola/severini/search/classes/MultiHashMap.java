@@ -30,6 +30,17 @@ public class MultiHashMap <X,Y> {
 		return keys.get(keys.size() - 1);
 	}
 	
+	public int size() {
+		return keys.size();
+	}
+	
+	public List<X> getKeys() {
+		return keys;
+	}
+	public List<Y> getValues() {
+		return values;
+	}
+	
 	public List<Y> getLastValues() {
 		ArrayList<Y> res = new ArrayList<>();
 		
