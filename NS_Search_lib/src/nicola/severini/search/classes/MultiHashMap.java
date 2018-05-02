@@ -43,14 +43,23 @@ public class MultiHashMap <X,Y> {
 	
 	public List<Y> getLastValues() {
 		ArrayList<Y> res = new ArrayList<>();
-		
 		for(int i = 0; i<keys.size(); i++) {
 			if(keys.get(i) == getLastKeyLevel()) res.add(values.get(i));
 		}
-		
 		return res;
-		
 	}
 	
+	public List<Y> getValuesAtLevel(X key) {
+		ArrayList<Y> res = new ArrayList<>();
+		for(int i = 0; i<keys.size(); i++) {
+			if(keys.get(i) == key) res.add(values.get(i));
+		}
+		
+		return res;
+	}
 	
+	public void delete(int i) {
+		keys.remove(i);
+		values.remove(i);
+	}
 }

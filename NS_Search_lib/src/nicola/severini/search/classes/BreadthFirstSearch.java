@@ -8,9 +8,8 @@ public class BreadthFirstSearch {
 		this.tree = tree;
 	}
 	
-	public SearchResult search() {
+	public SearchResult search(boolean onlyFrontier) {
 		SearchResult res = new SearchResult();
-		
 		boolean found = false;
 		while(!found) {
 			for(int i = 0; i<tree.getFrontier().size(); i++) {
@@ -28,7 +27,7 @@ public class BreadthFirstSearch {
 					break;
 				}
 			}
-			tree.addNewFrontier();
+			tree.addNewFrontier(onlyFrontier);
 		}
 		return res;
 	}

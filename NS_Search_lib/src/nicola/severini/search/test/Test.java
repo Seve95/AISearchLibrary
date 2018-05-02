@@ -17,7 +17,7 @@ public class Test {
 
 		BreadthFirstSearch b = new BreadthFirstSearch(tr);
 		
-		SearchResult sr = b.search();
+		SearchResult sr = b.search(true);
 		System.out.println(sr.completeToString());
 	}
 

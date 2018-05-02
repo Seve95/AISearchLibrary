@@ -20,15 +20,51 @@ public class TreeSearch {
 		return nodes.getLastValues();
 	}
 	
-	public void addNewFrontier() {
+	public List<Node> getFrontier(int level) {
+		return nodes.getValuesAtLevel(level);
+	}
+	
+	public void addNewFrontier(boolean onlyFrontier) {
 		ArrayList<Node> frontier = (ArrayList<Node>) nodes.getLastValues();
 		int currentLevel = getFrontierLevel();
 		for (int i = 0; i<frontier.size(); i++) {
 			for (int j = 0; j<frontier.get(i).getSons().size(); j++) {
 				nodes.put(currentLevel+1, frontier.get(i).getSons().get(j));
 			}
-			
+		}
+		if(onlyFrontier) {
+			for (int i = 0; i<nodes.getKeys().size(); i++) {
+				if(nodes.getKeys().get(i) != nodes.getLastKeyLevel()) nodes.delete(i);
+			}
 		}
 	}
-
+	
+	public void addNewSingleNode() {
+		nodes.put(getFrontierLevel()+1,  nodes.getLastValues().get(0).getSons().get(0));
+	}
+	
+	public boolean hasMoreBrothers(int level, int node) {
+		Node father = this.getFrontier(level).get(node).getFather();
+		int totalBrothers = father.getSons().size();
+		
+		int allocatedBrothers = 0;
+		
+		for (Node n : this.nodes.getValuesAtLevel(level)) {
+			if(n.getFather().equals(father)) allocatedBrothers++;
+		}
+		
+		return totalBrothers > allocatedBrothers;
+	}
+	
+	public void addNewBrother(int level, int node) {
+		//already checked a brother of that node exist
+		Node father = this.getFrontier(level).get(node).getFather();
+		int totalBrothers = father.getSons().size();
+		int allocatedBrothers = 0;
+		for (Node n : this.nodes.getValuesAtLevel(level)) {
+			if(n.getFather().equals(father)) allocatedBrothers++;
+		}
+		
+		nodes.put(level, this.getFrontier(level).get(node).getFather().getSons().get(totalBrothers - allocatedBrothers));
+	}
 }
