@@ -1,6 +1,7 @@
 package nicola.severini.search.classes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import nicola.severini.search.interfaces.IState;
@@ -82,6 +83,7 @@ public class Node {
 	public void setVisited(boolean isVisited) {
 		this.isVisited = isVisited;
 	}
+
 	
 	
 }

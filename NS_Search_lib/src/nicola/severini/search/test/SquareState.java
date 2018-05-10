@@ -108,7 +108,7 @@ public class SquareState implements IState{
 
 	@Override
 	public boolean isGoalTest() {
-		return freeSquare == 49;
+		return freeSquare == 50;
 	}
 	
 	private SquareState assignValue (int i, int j, int val) {

@@ -1,5 +1,7 @@
 package nicola.severini.search.classes;
 
+import java.util.Collections;
+
 public class DepthFirstSearch {
 	
 	private TreeSearch tree;
@@ -42,12 +44,12 @@ public class DepthFirstSearch {
 	}
 	
 	private void recursiveSearch(Node n) throws GoalFoundException {
-		System.out.println(n.getState());
+		//System.out.println(n.getState());
 		if(n.getState().isGoalTest()) {
 			this.sr.setState(n.getState());
 			throw new GoalFoundException("Found it");
 		} 
-		for(Node s : n.getSons()) {
+		for(Node s :n.getSons()) {
 			recursiveSearch(s);
 		}
 	}
