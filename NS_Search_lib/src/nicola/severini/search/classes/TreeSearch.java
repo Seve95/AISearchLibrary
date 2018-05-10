@@ -39,8 +39,15 @@ public class TreeSearch {
 		}
 	}
 	
-	public void addNewSingleNode() {
-		nodes.put(getFrontierLevel()+1,  nodes.getLastValues().get(0).getSons().get(0));
+	//used by depthfirst so, set visited true
+	public boolean addNewSingleNode() {
+		if(nodes.getLastValues().get(0).getSons().size() > 0) {
+			Node value = nodes.getLastValues().get(0).getSons().get(0);
+			value.setVisited(true);
+			nodes.put(getFrontierLevel()+1,  nodes.getLastValues().get(0).getSons().get(0));
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean hasMoreBrothers(int level, int node) {

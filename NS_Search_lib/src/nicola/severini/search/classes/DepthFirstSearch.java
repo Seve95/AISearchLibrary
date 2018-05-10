@@ -13,34 +13,24 @@ public class DepthFirstSearch {
 	}
 	
 	public SearchResult search(int limit) {
-		recursiveSearch(0,0,limit);
+		recursiveSearch(0,this.tree ,limit);
 		return this.sr;
 	}
 	
-	private void recursiveSearch(int level, int numberOfNodes, int limit) {
+	private void recursiveSearch(int level, TreeSearch tree, int limit) {
 		
-		Node currentNode = tree.getFrontier(level).get(numberOfNodes);
-		if(currentNode.getState().isGoalTest()) {
-			System.out.println("Found!");
-			sr.setState(currentNode.getState());
-			return;
-		} else {
-			if (level < limit) {
-				System.out.println("Level<limit: " + level);
-				if(!limitReached) tree.addNewSingleNode();
-				recursiveSearch(level+1, numberOfNodes, limit);
-			} else { 
-				System.out.println("Level = Limit: " + level);
+		if(!limitReached) { //first phase
+			if(level < limit) {
+				TreeSearch newTree = tree;
+				newTree.addNewSingleNode();
+				recursiveSearch(level + 1, newTree, limit);
+			} else {
 				limitReached = true;
-				if(tree.hasMoreBrothers(level, numberOfNodes)) {
-					tree.addNewBrother(level, numberOfNodes);
-					recursiveSearch(level, numberOfNodes+1, limit);
-				}
-				else {
-					tree.addNewBrother(level-1, numberOfNodes);
-					recursiveSearch(level-1, numberOfNodes+1, limit);
-				}
+				recursiveSearch(level - 1, tree, limit);
 			}
+		} else { //second phase
+			
 		}
+		
 	}
 }

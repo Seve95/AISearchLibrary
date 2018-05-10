@@ -9,10 +9,12 @@ public class Node {
 
 	private Node father;
 	private IState state;
+	private boolean isVisited;
 	
 	public Node(IState state) {
 		this.father = null;
 		this.state = state;
+		this.setVisited(false);
 	}
 	
 	public Node(Node father, IState state) {
@@ -71,6 +73,14 @@ public class Node {
 		} else if (!state.equals(other.state))
 			return false;
 		return true;
+	}
+
+	public boolean isVisited() {
+		return isVisited;
+	}
+
+	public void setVisited(boolean isVisited) {
+		this.isVisited = isVisited;
 	}
 	
 	
