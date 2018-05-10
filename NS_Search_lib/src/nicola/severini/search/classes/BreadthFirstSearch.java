@@ -8,7 +8,7 @@ public class BreadthFirstSearch {
 		this.tree = tree;
 	}
 	
-	public SearchResult search(boolean onlyFrontier) {
+	public SearchResult search() {
 		SearchResult res = new SearchResult();
 		boolean found = false;
 		while(!found) {
@@ -18,16 +18,10 @@ public class BreadthFirstSearch {
 				if(currentNode.getState().isGoalTest()) {
 					found = true;
 					res.setState(currentNode.getState());
-					res.addToPath(currentLevel, currentNode);
-					while (currentNode.getFather() != null) {
-						currentLevel --;
-						currentNode = currentNode.getFather();
-						res.addToPath(currentLevel, currentNode);
-					}
 					break;
 				}
 			}
-			tree.addNewFrontier(onlyFrontier);
+			tree.addNewFrontier();
 		}
 		return res;
 	}

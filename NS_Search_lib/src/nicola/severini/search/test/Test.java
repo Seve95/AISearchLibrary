@@ -1,6 +1,5 @@
 package nicola.severini.search.test;
 
-import java.util.ArrayList;
 
 import nicola.severini.search.classes.BreadthFirstSearch;
 import nicola.severini.search.classes.Node;
@@ -17,8 +16,7 @@ public class Test {
 
 		BreadthFirstSearch b = new BreadthFirstSearch(tr);
 		
-		SearchResult sr = b.search(true);
-		System.out.println(sr.completeToString());
+		SearchResult sr = b.search();
 	}
 
 }

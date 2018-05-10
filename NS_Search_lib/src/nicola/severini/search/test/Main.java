@@ -18,23 +18,18 @@ public class Main {
 //		tree.addNewFrontier();
 //		System.out.println(tree.getFrontier().size());
 //		
-//		tree.addNewFrontier();
-//		System.out.println(tree.getFrontier().size());
-//		
-//		tree.addNewFrontier();
-//		System.out.println(tree.getFrontier().size());
-//		
-//		tree.addNewFrontier();
-//		System.out.println(tree.getFrontier().size());
-//		
-//		System.out.println(tree.getFrontier().get(0).getState());
+//		for (Node n : tree.getFrontier()) {
+//			System.out.println(n.getState());
+//		}
+		
+		//System.out.println(tree.getFrontier().get(0).getState());
 		
 		Long init = System.currentTimeMillis();
-		
-		BreadthFirstSearch bfs = new BreadthFirstSearch(tree);
+//		
+//		BreadthFirstSearch bfs = new BreadthFirstSearch(tree);
 		DepthFirstSearch dfs = new DepthFirstSearch(tree);
-		
-		SearchResult res = dfs.search(100);
+//		
+		SearchResult res = dfs.search();
 		System.out.println(res.simpleToString());
 		Long fin = System.currentTimeMillis();
 		
